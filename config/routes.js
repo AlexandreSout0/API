@@ -27,4 +27,22 @@ routes.post('/add', (req, res)=> {
     return res.json(body)
 })
 
- module.exports = routes
+//Deletar dados  
+routes.delete('/:id', (req, res) => {
+    const id = req.params.id
+
+    let newdb = db.filter(item => {
+        if(!item[id]){
+
+            return item
+        }
+    })
+
+    db = newdb
+
+    return res.send(newdb)
+})
+
+
+
+module.exports = routes
